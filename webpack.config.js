@@ -2,6 +2,8 @@ const path = require('path');// Para trabajar con archivos y rutas de directorio
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 
 //añadir el autocompletado para nuestro archivo de webpack @type
 /** @type {import('webpack').Configuration} */ 
@@ -14,7 +16,7 @@ module.exports = {
     // Con path.resolve podemos decir dónde va estar la carpeta y la ubicación del mismo
     path: path.resolve(__dirname, 'dist'),
     // filename le pone el nombre al archivo final
-    filename: 'main.js',
+    filename: '[name].[contenthash].js',
     assetModuleFilename: 'assets/images/[hash][ext][query]',
   },
   resolve: {
@@ -54,7 +56,7 @@ module.exports = {
             // Mimetype => tipo de dato
             mimetype: "application/font-woff",
             // name => nombre de salida
-            name: "[name].[ext]",
+            name: "[name].[contenthash].[ext]",
             // outputPath => donde se va a guardar en la carpeta final
             outputPath: "./assets/fonts/",
             publicPath: "./assets/fonts/",
@@ -76,11 +78,20 @@ module.exports = {
       //nombre final del archivo
       filename: './index.html'
     }),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css'
+    }),
     new CopyPlugin({
       patterns: [
         { from: path.resolve(__dirname, "src", "assets/images"), to: "assets/images" },
       ],
     }),
-  ]
+  ],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new CssMinimizerPlugin(),
+      new TerserPlugin()
+    ],
+  },
 }
