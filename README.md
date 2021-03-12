@@ -38,5 +38,17 @@ git pull mi-repo branch-a-hacer-push
     ```sh
     yarn dev
     ```
+### 🩺 Bundle Analyzer
 
+    Si deseamos hacer un análisis
+
+    ```sh
+    npx webpack --profile --json > stats.json
+    ```
+
+    Verlo en wev
+
+    ```sh
+    npx webpack-bundle-analyzer stats.json
+    ```
 Happy hacking!
