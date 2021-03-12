@@ -1,5 +1,6 @@
 const path = require('path');// Para trabajar con archivos y rutas de directorios
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 //añadir el autocompletado para nuestro archivo de webpack @type
 /** @type {import('webpack').Configuration} */ 
@@ -32,7 +33,11 @@ module.exports = {
             presets: ['@babel/preset-env']
           }
         }
-      }
+      },
+      {
+        test: /\.css|.styl$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'stylus-loader'],
+      },
     ]
   },
   plugins: [
@@ -46,6 +51,7 @@ module.exports = {
       template: './public/index.html',
       //nombre final del archivo
       filename: './index.html'
-    })
+    }),
+    new MiniCssExtractPlugin(),
   ]
 }
