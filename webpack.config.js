@@ -1,4 +1,5 @@
 const path = require('path');// Para trabajar con archivos y rutas de directorios
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 //añadir el autocompletado para nuestro archivo de webpack @type
 /** @type {import('webpack').Configuration} */ 
@@ -33,5 +34,18 @@ module.exports = {
         }
       }
     ]
-  } 
+  },
+  plugins: [
+    //hacemos una instancia de lo que definimos en el inicio del archivo
+    // le anadimos por parametro un objeto donde vamos a tener las 
+    //configuraciones que le vamos anadir a nuestro plugin
+    new HtmlWebpackPlugin({
+      //inyecta el bundle al template html
+      inject: true,
+       //la ruta al template html
+      template: './public/index.html',
+      //nombre final del archivo
+      filename: './index.html'
+    })
+  ]
 }
