@@ -19,8 +19,6 @@ module.exports = {
     filename: '[name].[contenthash].js',
     assetModuleFilename: 'assets/images/[hash][ext][query]',
   },
-  // El modo watch hace que nuestro proyecto se compile de forma automática
-  watch: true,
   resolve: {
     // Aqui ponemos las extensiones que tendremos en nuestro proyecto para webpack los lea
     extensions: ['.js'],
@@ -96,4 +94,10 @@ module.exports = {
     }),
     new Dotenv(),
   ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    historyApiFallback: true,
+    port: 3000,
+  }
 }
