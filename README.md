@@ -1,4 +1,7 @@
-# js-portfolio
+# Curso de Webpack
+
+### Proyecto del curso
+![Proyect](https://static.platzi.com/media/user_upload/Proyecto-bf2156ea-1bec-4879-94bb-b877d74d8b78.jpg) 
 
 ### 🔎 Cómo trabajar en este proyecto?
 El curso es totalmente práctico y progresivo. Este repositorio sólo existe como una guía para cuando lo necesites. Puedes realizar todo el curso en tu propio proyecto y tu propio repositorio.
